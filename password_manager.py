@@ -8,9 +8,9 @@ DATA_FILE = "users_data.json"
 def main(): 
     global users   
     try:
-        if os.path.exists(DATA_FILE):  # Ensure the file exists before trying to
+        if os.path.exists(DATA_FILE):  # Ensure the file exists before trying to read
             with open(DATA_FILE, "r") as file: 
-                users = json.load(file) # skibidi
+                users = json.load(file) 
     except (json.JSONDecodeError, FileNotFoundError) as e:
         users = []  
     name = input("Enter your name")
