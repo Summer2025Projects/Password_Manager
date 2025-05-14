@@ -1,22 +1,67 @@
 import json
 import os
 
-users = []
+
+loginInfo = {} 
 DATA_FILE = "users_data.json"
 
 
-def main(): 
-    global users   
+def main():  
+    global loginInfo
+    # Check if the file exists and read the data
+    # If the file does not exist, create it
     try:
-        if os.path.exists(DATA_FILE):  # Ensure the file exists before trying to read
+        if os.path.exists(DATA_FILE):
             with open(DATA_FILE, "r") as file: 
-                users = json.load(file) 
+                loginInfo = json.load(file) 
     except (json.JSONDecodeError, FileNotFoundError) as e:
-        users = []  
-    name = input("Enter your name")
-    users.append(name)
-    with open(DATA_FILE, "w") as file:
-        json.dump(users, file, indent=4)
+        loginInfo = {}
+
+
+    status = True
+    print("Welcome to the Password Manager")
+    # Loop until the user chooses to exit
+    while status:
+        # Check if the user exists and if not, force register
+        print("(1) Create a new account")
+        print("(2) Login to an existing account")
+        print("(3) Exit")
+        choice = input ("Enter yout choice: ")
+        match choice:
+            case "1":
+                username = input("Enter Username: ")
+                password = input("Enter Password: ")
+                if username in loginInfo:
+                    print("Username already exists. Please enter a different username.")
+                    while username in loginInfo:
+                        username = input("Enter a different Username: ")
+                        if username not in loginInfo:
+                            loginInfo[username] = password
+                            with open(DATA_FILE, "w") as file:
+                                json.dump(loginInfo, file, indent=4)
+                            print("Yout account has been created.")
+                            break
+                        print("Username already exists. Please enter a different username.")
+                    
+                else:
+                    loginInfo[username] = password
+                    with open(DATA_FILE, "w") as file:
+                        json.dump(loginInfo, file, indent=4)
+                    print("Yout account has been created.")
+            case "2":
+                username = input("Enter Username: ")
+                password = input("Enter Password: ")
+                if username in loginInfo and loginInfo[username] == password:
+                    print("Login successful.")
+                else:
+                    print("Invalid username or password.")
+            case "3":
+                print("Exiting the program.")
+                status = False
+        
+
+
+
     # Create an account or have an existing account    
     #username = input("Enter username")
     #password = input("Enter Password")
@@ -52,11 +97,6 @@ def main():
     
    # print("(4) View list of saved passwords")
    # print("(5) Delete saved password")
-
-    print(users)
-    
-
-
 
 if __name__ == "__main__":
     main()  
