@@ -2,14 +2,16 @@ import json
 import os
 
 users = []
-DATA_FILE = "/users_data.json"
+DATA_FILE = "users_data.json"
 
 
-def main():   
+def main(): 
+    global users   
     try:
-        with open(DATA_FILE, "r") as file:
-            users = json.load(file)
-    except (json.JSONDecodeError, FileNotFoundError):
+        if os.path.exists(DATA_FILE):  # Ensure the file exists before trying to read
+            with open(DATA_FILE, "r") as file:
+                users = json.load(file)
+    except (json.JSONDecodeError, FileNotFoundError) as e:
         users = []  
     name = input("Enter your name")
     users.append(name)
@@ -51,7 +53,7 @@ def main():
    # print("(4) View list of saved passwords")
    # print("(5) Delete saved password")
 
-    print(loaded_data)
+    print(users)
     
 
 
