@@ -8,7 +8,7 @@ DATA_FILE = "users_data.json"
 def main(): 
     global users   
     try:
-        if os.path.exists(DATA_FILE):  # Ensure the file exists before trying to read
+        if os.path.exists(DATA_FILE):  # Ensure the file exists before trying to
             with open(DATA_FILE, "r") as file: 
                 users = json.load(file) # skibidi
     except (json.JSONDecodeError, FileNotFoundError) as e:
