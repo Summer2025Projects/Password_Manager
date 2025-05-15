@@ -58,15 +58,7 @@ def main():
             case "3":
                 print("Exiting the program.")
                 status = False
-        
 
-
-
-    # Create an account or have an existing account    
-    #username = input("Enter username")
-    #password = input("Enter Password")
-    
-    # Check if the user exists and if not, force register
 
     #print("(1) Add new site's information")
         #print("(1) Ask for site name")
