@@ -198,36 +198,5 @@ def main():
     while status:
         menu(status)
 
-
-    #print("(1) Add new site's information")
-        #print("(1) Ask for site name")
-        #print("(2) Add new username and password")
-
-    #print("(2) Edit a site's information")
-        #print("(1) Change username")
-        #print("(2) Change password")
-
-    #print("(3) View list of saved sites")
-        # print the key value of the dictionary
-        
-    #print("(4) Change account username")
-        # accessing the first value in the array
-
-    #print("(5) Change account password")
-        # accessing the second value in the array
-    
-    #print("(6) Change between accounts")
-        
-    
-    #print("(7) Delete a site's information")
-    
-    #print("(X) Exit")
-    
-    
- 
-    
-   # print("(4) View list of saved passwords")
-   # print("(5) Delete saved password")
-
 if __name__ == "__main__":
     main()  
