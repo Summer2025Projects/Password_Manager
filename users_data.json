@@ -1,3 +1,8 @@
 {
-    "karan": "ketav"
+    "johnny": {
+        "name": "karan gupta",
+        "username": "johnny",
+        "password": "eswar12",
+        "websites": []
+    }
 }
