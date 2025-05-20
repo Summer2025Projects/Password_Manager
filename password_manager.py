@@ -69,8 +69,7 @@ def menu(status):
              
         case "3":
             print("Exiting the program.")
-            status = False
-            return status
+            exit()
 
 def loggedIn(user):
     print("(1) Change account username")

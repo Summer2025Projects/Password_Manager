@@ -30,5 +30,12 @@
         "username": "karangu1022",
         "password": "John@123",
         "websites": []
+    },
+    "kj": {
+        "name": "karang",
+        "email": "kra@gmail.com",
+        "username": "kj",
+        "password": "jk",
+        "websites": []
     }
 }
