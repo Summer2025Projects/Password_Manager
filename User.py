@@ -1,12 +1,14 @@
 from Website import Website
 
 class User:
-    def __init__(self, name, email, username, password, list_of_websites):
+    def __init__(self, name, email, username, password, list_of_websites, access):
         self.name = name
         self.email = email
         self.username = username
         self.password = password 
         self.list_of_websites = list_of_websites
+        self.access = access
+    
 
     def get_name(self):
         return self.name
@@ -23,6 +25,9 @@ class User:
     def get_list_of_websites(self):
         return self.list_of_websites
     
+    def get_access(self):
+        return self.access
+    
     def set_name(self, name):
         self.name = name
     
@@ -38,13 +43,17 @@ class User:
     def set_list_of_websites(self, list_of_websites):
         self.list_of_websites = list_of_websites
 
+    def set_access(self, access):
+        self.access = access
+
     def to_dict(self):
         return {
             "name": self.name,
             "email": self.email,
             "username": self.username,
             "password": self.password,
-            "websites": [site.to_dict() for site in self.list_of_websites]
+            "websites": [site.to_dict() for site in self.list_of_websites],
+            "access": self.access
         }
 
     @classmethod
@@ -55,7 +64,8 @@ class User:
             data["email"],
             data["username"],
             data["password"],
-            websites
+            websites,
+            data.get("access", False)
         )
 
     

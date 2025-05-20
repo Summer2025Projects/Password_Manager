@@ -32,7 +32,7 @@ def menu(status):
                 while username in loginInfo:
                     username = input("Enter a different Username: ")
                     if username not in loginInfo:
-                        user = User(name, email, username, password, [])
+                        user = User(name, email, username, password, [], False)
                         loginInfo[username] = user
                         with open(DATA_FILE, "w") as file:
                             json.dump({u: user.to_dict() for u, user in loginInfo.items()}, file, indent=4)
@@ -41,7 +41,7 @@ def menu(status):
                     else:
                         print("Username already exists. Please enter a different username.")
             else:
-                user = User(name, email, username, password, [])
+                user = User(name, email, username, password, [], False)
                 loginInfo[username] = user
                 with open(DATA_FILE, "w") as file:
                     json.dump({u: user.to_dict() for u, user in loginInfo.items()}, file, indent=4)
@@ -62,6 +62,9 @@ def menu(status):
                     if username in loginInfo and password == loginInfo[username].get_password():
                         print("Login successful.")
                         loggedIn(loginInfo[username])
+                        loginInfo[username].set_access(True)
+                        with open(DATA_FILE, "w") as file:
+                            json.dump({u: user.to_dict() for u, user in loginInfo.items()}, file, indent=4)
                         status = False  
                     else:
                         print("Invalid username or password.")
@@ -69,6 +72,10 @@ def menu(status):
              
         case "3":
             print("Exiting the program.")
+            for user in loginInfo.values():
+                user.set_access(False)
+                with open(DATA_FILE, "w") as file:
+                    json.dump({u: user.to_dict() for u, user in loginInfo.items()}, file, indent=4)
             exit()
 
 def loggedIn(user):
