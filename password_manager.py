@@ -61,10 +61,10 @@ def menu(status):
                     password = input("Enter Password: ")
                     if username in loginInfo and password == loginInfo[username].get_password():
                         print("Login successful.")
-                        loggedIn(loginInfo[username])
                         loginInfo[username].set_access(True)
                         with open(DATA_FILE, "w") as file:
                             json.dump({u: user.to_dict() for u, user in loginInfo.items()}, file, indent=4)
+                        loggedIn(loginInfo[username])
                         status = False  
                     else:
                         print("Invalid username or password.")
@@ -77,6 +77,10 @@ def menu(status):
                 with open(DATA_FILE, "w") as file:
                     json.dump({u: user.to_dict() for u, user in loginInfo.items()}, file, indent=4)
             exit()
+
+        case _:
+            print("Invalid choice. Please try again.")
+            menu(status)
 
 def loggedIn(user):
     print("(1) Change account username")
@@ -199,23 +203,32 @@ def loggedIn(user):
                 print("Username not found. Please enter a valid username.")
                 username = input("Enter the username of the account you want to switch to: ")
             if username in loginInfo:
-                print("Switching to account:", username)
-                loggedIn(loginInfo[username])
-                print("You have successfully switched to account:", username)
+                if loginInfo[username].get_access() == False:
+                    print("You cannot switch to an account that is not logged in.")
+                else:
+                    print("Switching to account:", username)
+                    loggedIn(loginInfo[username])
+                    print("You have successfully switched to account:", username)
             loggedIn(user)
         case "9":
             username = input("Enter the username of the account you want to delete: ")
             while username not in loginInfo:
                 print("Username not found. Please enter a valid username.")
                 username = input("Enter the username of the account you want to delete: ")
-            del loginInfo[username]
-            with open(DATA_FILE, "w") as file:
-                json.dump({u: user.to_dict() for u, user in loginInfo.items()}, file, indent=4)
-            print("Account has been deleted successfully.")
+            if loginInfo[username].get_access() == False:
+                print("You cannot delete an account that is not logged in.")
+            else:
+                del loginInfo[username]
+                with open(DATA_FILE, "w") as file:
+                    json.dump({u: user.to_dict() for u, user in loginInfo.items()}, file, indent=4)
+                print("Account has been deleted successfully.")
             loggedIn(user)
         case "X" | "x":
             print("Exiting the program.")
             menu(True)
+        case _:
+            print("Invalid choice. Please try again.")
+            loggedIn(user)
             
 def main():  
     global loginInfo

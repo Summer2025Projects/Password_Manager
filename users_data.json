@@ -4,7 +4,8 @@
         "email": "jimmy@gmail.com",
         "username": "jimmy12",
         "password": "green@12",
-        "websites": []
+        "websites": [],
+        "access": true
     },
     "eswar12": {
         "name": "Ewsar G",
@@ -22,20 +23,15 @@
                 "username": "eswar123",
                 "password": "bev90"
             }
-        ]
+        ],
+        "access": false
     },
     "karangu1022": {
         "name": "Karan Gupta",
         "email": "karangu1022@gmail.com",
         "username": "karangu1022",
         "password": "John@123",
-        "websites": []
-    },
-    "kj": {
-        "name": "karang",
-        "email": "kra@gmail.com",
-        "username": "kj",
-        "password": "jk",
-        "websites": []
+        "websites": [],
+        "access": false
     }
 }
