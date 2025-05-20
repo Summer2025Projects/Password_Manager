@@ -93,6 +93,7 @@ def loggedIn(user):
     print("(7) View list of saved sites")
     print("(8) Change between accounts")
     print("(9) Delete Account")
+    print("(I) To get a site's username and password")
     print("(X) Exit")
     choice = input("Enter your choice: ")
 
@@ -237,6 +238,18 @@ def loggedIn(user):
                     json.dump({u: user.to_dict() for u, user in loginInfo.items()}, file, indent=4)
                 print("Account has been deleted successfully.")
             loggedIn(user)
+        case "I" | "i":
+            site_name = input("Enter the name of the site: ")
+            while site_name not in [site.get_name() for site in user.get_list_of_websites()]:
+                print("Site not found. Please enter a valid site name.")
+                site_name = input("Enter the name of the site: ")
+            for site in user.get_list_of_websites():
+                if site.get_name() == site_name:
+                    username = site.get_username()
+                    password = site.get_password()
+                    print("Username:", username)
+                    print("Password:", password)
+                    loggedIn(user)
         case "X" | "x":
             print("Exiting the program.")
             menu(True)
