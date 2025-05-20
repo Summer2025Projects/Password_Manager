@@ -5,7 +5,7 @@
         "username": "jimmy12",
         "password": "green@12",
         "websites": [],
-        "access": true
+        "access": false
     },
     "eswar12": {
         "name": "Ewsar G",
@@ -13,11 +13,6 @@
         "username": "eswar12",
         "password": "bevo12",
         "websites": [
-            {
-                "name": "utexas",
-                "username": "john",
-                "password": "123"
-            },
             {
                 "name": "youtube",
                 "username": "eswar123",

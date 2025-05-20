@@ -12,7 +12,7 @@ def menu(status):
     # Check if the user exists and if not, force register
     print("(1) Create a new account")
     print("(2) Login to an existing account")
-    print("(3) Exit")
+    print("(X) Exit")
     choice = input ("Enter your choice: ")
     match choice:
         case "1":
@@ -70,7 +70,7 @@ def menu(status):
                         print("Invalid username or password.")
                         print("Please try again.")
              
-        case "3":
+        case "X":
             print("Exiting the program.")
             for user in loginInfo.values():
                 user.set_access(False)
