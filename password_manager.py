@@ -66,8 +66,7 @@ def menu(status):
                     else:
                         print("Invalid username or password.")
                         print("Please try again.")
-            
-                
+             
         case "3":
             print("Exiting the program.")
             status = False
@@ -116,6 +115,15 @@ def loggedIn(user):
                     loggedIn(user)
         case "2":
             password = input("Enter a current password: ")
+
+            if password != user.get_password():
+                print("Incorrect password. Please try again.")
+                while password != user.get_password():
+                    password = input("Enter a current password: ")
+                    if password == user.get_password():
+                        break
+                    print("Incorrect password. Please try again.")
+
             new_password = input("Enter a new password: ")
             while password == new_password:
                 print("The new password and the old pasword cannot be the same.")
@@ -137,10 +145,10 @@ def loggedIn(user):
             loggedIn(user)
         case "4":
             site_name = input("Enter the name of the site that you want to delete: ")
-            while site_name not in user.get_list_of_wesbsites():
+            while site_name not in [site.get_name() for site in user.get_list_of_websites()]:
                 print("Site not found. Please enter a valid site name.")
                 site_name = input("Enter the name of the site that you want to delete: ")
-            for site in user.get_list_of_wesbsites():
+            for site in user.get_list_of_websites():
                 if site.get_name() == site_name:
                     user.get_list_of_websites().remove(site)
                     with open(DATA_FILE, "w") as file:
@@ -149,7 +157,7 @@ def loggedIn(user):
                     loggedIn(user)
         case "5":
             site_name = input("Enter the name of the site that you want to edit: ")
-            while site_name not in user.get_list_of_websites():
+            while site_name not in [site.get_name() for site in user.get_list_of_websites()]:
                 print("Site not found. Please enter a valid site name.")
                 site_name = input("Enter the name of the site that you want to edit: ")
             for site in user.get_list_of_websites():
@@ -162,7 +170,7 @@ def loggedIn(user):
                     loggedIn(user)
         case "6":
             site_name = input("Enter the name of the site that you want to edit: ")
-            while site_name not in user.get_list_of_websites():
+            while site_name not in [site.get_name() for site in user.get_list_of_websites()]:
                 print("Site not found. Please enter a valid site name.")
                 site_name = input("Enter the name of the site that you want to edit: ")
             for site in user.get_list_of_websites():
@@ -177,6 +185,7 @@ def loggedIn(user):
             print("Saved sites, for user: ", user.get_username())
             for site in user.get_list_of_websites():
                 print("Name of site:", site.get_name())
+            loggedIn(user)
         case "8":
             # Change between accounts
             username = input("Enter the username of the account you want to switch to: ")
@@ -187,6 +196,7 @@ def loggedIn(user):
                 print("Switching to account:", username)
                 loggedIn(loginInfo[username])
                 print("You have successfully switched to account:", username)
+            loggedIn(user)
         case "9":
             username = input("Enter the username of the account you want to delete: ")
             while username not in loginInfo:

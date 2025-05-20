@@ -6,23 +6,16 @@
         "password": "green@12",
         "websites": []
     },
-    "jimmy123": {
-        "name": "jimmy green",
-        "email": "jimmygreen@gmail.com",
-        "username": "jimmy123",
-        "password": "123",
-        "websites": []
-    },
     "eswar12": {
         "name": "Ewsar G",
         "email": "ewsar@gmail.com",
         "username": "eswar12",
-        "password": "D",
+        "password": "bevo12",
         "websites": [
             {
                 "name": "utexas",
-                "username": "eg1234",
-                "password": "bevo12"
+                "username": "john",
+                "password": "123"
             },
             {
                 "name": "youtube",
@@ -30,5 +23,12 @@
                 "password": "bev90"
             }
         ]
+    },
+    "karangu1022": {
+        "name": "Karan Gupta",
+        "email": "karangu1022@gmail.com",
+        "username": "karangu1022",
+        "password": "John@123",
+        "websites": []
     }
 }

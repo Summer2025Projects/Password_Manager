@@ -4,7 +4,7 @@ class Website:
         self.username = username
         self.password = password
     
-    def name(self):
+    def get_name(self):
         return self.name
     
     #remember to decrypt the username before returning it
@@ -15,7 +15,7 @@ class Website:
     def get_password(self):
         return self.password
     
-    def name(self, name):
+    def set_name(self, name):
         self.name
     
     #remember to encrypt the username before setting it
