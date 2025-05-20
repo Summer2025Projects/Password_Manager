@@ -1,8 +1,34 @@
 {
-    "johnny": {
-        "name": "karan gupta",
-        "username": "johnny",
-        "password": "eswar12",
+    "jimmy12": {
+        "name": "Jimmy",
+        "email": "jimmy@gmail.com",
+        "username": "jimmy12",
+        "password": "green@12",
         "websites": []
+    },
+    "jimmy123": {
+        "name": "jimmy green",
+        "email": "jimmygreen@gmail.com",
+        "username": "jimmy123",
+        "password": "123",
+        "websites": []
+    },
+    "eswar12": {
+        "name": "Ewsar G",
+        "email": "ewsar@gmail.com",
+        "username": "eswar12",
+        "password": "D",
+        "websites": [
+            {
+                "name": "utexas",
+                "username": "eg1234",
+                "password": "bevo12"
+            },
+            {
+                "name": "youtube",
+                "username": "eswar123",
+                "password": "bev90"
+            }
+        ]
     }
 }

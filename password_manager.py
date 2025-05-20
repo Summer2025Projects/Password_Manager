@@ -13,10 +13,17 @@ def menu(status):
     print("(1) Create a new account")
     print("(2) Login to an existing account")
     print("(3) Exit")
-    choice = input ("Enter yout choice: ")
+    choice = input ("Enter your choice: ")
     match choice:
         case "1":
             name = input("Enter your name: ")
+            email = input("Enter your email: ")
+            while True:
+                if "@" in email and "." in email:
+                    break
+                else:
+                    print("Invalid email. Please enter a valid email address.")
+                    email = input("Enter your email: ")
             username = input("Enter Username: ")
             password = input("Enter Password: ")
 
@@ -25,36 +32,46 @@ def menu(status):
                 while username in loginInfo:
                     username = input("Enter a different Username: ")
                     if username not in loginInfo:
-                        user = User(name, username, password, [])
+                        user = User(name, email, username, password, [])
                         loginInfo[username] = user
                         with open(DATA_FILE, "w") as file:
                             json.dump({u: user.to_dict() for u, user in loginInfo.items()}, file, indent=4)
                         print("Your account has been created.")
-                        break
-                    print("Username already exists. Please enter a different username.")
+                        menu(status)
+                    else:
+                        print("Username already exists. Please enter a different username.")
             else:
-                user = User(name, username, password, [])
+                user = User(name, email, username, password, [])
                 loginInfo[username] = user
                 with open(DATA_FILE, "w") as file:
                     json.dump({u: user.to_dict() for u, user in loginInfo.items()}, file, indent=4)
-                print("Your account has been created.")  
+                print("Your account has been created.")
+                menu(status)
         case "2":
             print("Login to an existing account")
             print("Please enter your username and password.")
-            stauts = True
-            while True:
-                username = input("Enter Username: ")
-                password = input("Enter Password: ")
-                if username in loginInfo and password == loginInfo[username].get_password():
-                    print("Login successful.")
-                    loggedIn(loginInfo[username])
-                    status = False
-                else:
-                    print("Invalid username or password.")
-                    print("Please try again.")
+            choice = input("Enter F if you forgot username/password or enter to continue: ").strip().lower()
+            if choice == "f":
+                print("Please contact support to reset your username/password.")
+                status = False
+            else:
+                status = True
+                while True:
+                    username = input("Enter Username: ")
+                    password = input("Enter Password: ")
+                    if username in loginInfo and password == loginInfo[username].get_password():
+                        print("Login successful.")
+                        loggedIn(loginInfo[username])
+                        status = False  
+                    else:
+                        print("Invalid username or password.")
+                        print("Please try again.")
+            
+                
         case "3":
             print("Exiting the program.")
             status = False
+            return status
 
 def loggedIn(user):
     print("(1) Change account username")
@@ -179,6 +196,7 @@ def loggedIn(user):
             with open(DATA_FILE, "w") as file:
                 json.dump({u: user.to_dict() for u, user in loginInfo.items()}, file, indent=4)
             print("Account has been deleted successfully.")
+            loggedIn(user)
         case "X" | "x":
             print("Exiting the program.")
             menu(True)
@@ -196,7 +214,7 @@ def main():
     status = True
     print("Welcome to the Password Manager")
     while status:
-        menu(status)
+        status = menu(status)
 
 if __name__ == "__main__":
     main()  

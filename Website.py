@@ -1,11 +1,11 @@
 class Website:
-    def __init__(self, website_name, username, password):
-        self.website_name = website_name
+    def __init__(self, name, username, password):
+        self.name = name
         self.username = username
         self.password = password
     
-    def get_website_name(self):
-        return self.website_name
+    def name(self):
+        return self.name
     
     #remember to decrypt the username before returning it
     def get_username(self):
@@ -15,8 +15,8 @@ class Website:
     def get_password(self):
         return self.password
     
-    def set_website_name(self, website_name):
-        self.website_name
+    def name(self, name):
+        self.name
     
     #remember to encrypt the username before setting it
     def set_username(self, username):
@@ -24,5 +24,11 @@ class Website:
 
     #remember to encrypt the password before setting it
     def set_password(self, password):
-        
         self.password = password
+    
+    def to_dict(self):
+        return {
+            "name": self.name,
+            "username": self.username,
+            "password": self.password
+        }
