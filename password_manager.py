@@ -2,6 +2,7 @@ import json
 import os
 from User import User
 from Website import Website
+from cryptography.fernet import Fernet
 
 
 loginInfo = {} 
@@ -70,7 +71,7 @@ def menu(status):
                         print("Invalid username or password.")
                         print("Please try again.")
              
-        case "X":
+        case "X" | "x":
             print("Exiting the program.")
             for user in loginInfo.values():
                 user.set_access(False)
@@ -144,10 +145,17 @@ def loggedIn(user):
             print("Your password has been successfully updated.")
             loggedIn(user)
         case "3":
-            site_name =input("Enter the name of the site: ")
+            site_name = input("Enter the name of the site: ")
+            while site_name in [site.get_name() for site in user.get_list_of_websites()]:
+                print("Site already exists. Please enter a different site name.")
+                site_name = input("Enter the name of the site: ")
+            key = Fernet.generate_key()
             site_username = input("Enter the username for the site: ")
-            site_password = input("Enter the password for the site: ")
-            site = Website(site_name, site_username, site_password)
+            site_password = input("Enter the password for the site: ")    
+            site_username = Fernet(key).encrypt(site_username.encode()).decode()
+            site_password = Fernet(key).encrypt(site_password.encode()).decode()
+            key = key.decode()
+            site = Website(site_name, site_username, site_password, key)
             user.get_list_of_websites().append(site)
             with open(DATA_FILE, "w") as file:
                 json.dump({u: user.to_dict() for u, user in loginInfo.items()}, file, indent=4)
@@ -173,6 +181,9 @@ def loggedIn(user):
             for site in user.get_list_of_websites():
                 if site.get_name() == site_name:
                     new_username = input("Enter the new username for the site: ")
+                    while new_username == site.get_username():
+                        print("The new username and the old username cannot be the same.")
+                        new_username = input("Enter a new username for the site: ")
                     site.set_username(new_username)
                     with open(DATA_FILE, "w") as file:
                         json.dump({u: user.to_dict() for u, user in loginInfo.items()}, file, indent=4)
@@ -186,6 +197,9 @@ def loggedIn(user):
             for site in user.get_list_of_websites():
                 if site.get_name() == site_name:
                     new_password = input("Enter the new password for the site: ")
+                    while new_password == site.get_password():
+                        print("The new password and the old password cannot be the same.")
+                        new_password = input("Enter a new password for the site: ")
                     site.set_password(new_password)
                     with open(DATA_FILE, "w") as file:
                         json.dump({u: user.to_dict() for u, user in loginInfo.items()}, file, indent=4)

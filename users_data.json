@@ -4,7 +4,14 @@
         "email": "jimmy@gmail.com",
         "username": "jimmy12",
         "password": "green@12",
-        "websites": [],
+        "websites": [
+            {
+                "name": "utexas",
+                "username": "gAAAAABoLAXqCLRJYxjalmAor7b3hpvt9oztluMPCG41Pil-n0sVig5T0i-q7BEtuWzB3ijUby6v8qKsiI7DELNNgAsyjxb3Xw==",
+                "password": "gAAAAABoLAXN7KhpRkuLXZxEk0Dyww93-fFDI-Oywaz6Fybm3v2OrUPgqPxrwhsg7zWEQcbDWmJtLWyEd6c49_pn5rb6FQYthw==",
+                "key": "j_ywzOOZ4JiAKCgOSnw1XSbtS2JLhxt4Xqsyu4IOxd0="
+            }
+        ],
         "access": false
     },
     "eswar12": {
@@ -16,7 +23,8 @@
             {
                 "name": "youtube",
                 "username": "eswar123",
-                "password": "bev90"
+                "password": "bev90",
+                "key": null
             }
         ],
         "access": false
