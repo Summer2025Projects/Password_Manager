@@ -1,19 +1,43 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="utf-8">
+        <title>Password Manager</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="style.css" rel="stylesheet">
+    </head>
 
-<head>
-  <meta charset="utf-8">
-  <title>Password Manager</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <body>
+        
+        <script src="script.js"></script>
+        <!--Wrapper the houses register, login, and support tabs-->
+        <div class = "box-area">
+            <header>
+                <div class = "wrapper">
+                    <div class = logo>
+                        <a href="#">
+                            <img src="Images/lock.png">
+                        </a>
+                    </div>
+                    <nav>
+                        <a href="index.html">Register</a>
+                        <a href="login.html">Login</a>
+                        <a href="support.html">Support</a>
+                    </nav>
+                </div>
+            </header>        
+        </div>
 
-  <link href="style.css" rel="stylesheet">
-</head>
-
-<body>
-
-  <p></p>
-
-  <script src="script.js"></script>
-</body>
+        <!--Register Box-->
+        <div class = "box">
+            <h1>Register</h1>
+            <form id="register-form" action="register.php" method="POST">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <button type="submit">Register</button>
+            </form>
+    </body>
 
 </html>

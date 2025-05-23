@@ -1,0 +1,37 @@
+/* Make the header content flex and align items center */
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #CC5500; 
+    padding: 15px 20px;
+    min-height: 20px; ;
+    border-style: rounded;
+    border-color: #FF944D;
+}
+
+/* Style the logo image */
+.logo img {
+    height: 40px;   /* Adjust size as needed */
+    width: auto;
+    display: block;
+    background-color: #CC5500;
+}
+
+nav a {
+    margin-left: 20px;
+    margin-right: 20px;
+    text-decoration: none;
+    color: inherit;
+    padding: 5px 10px;
+}
+
+
+nav a:hover {
+    color: #fff;
+    background-color: #FF944D;
+    border-radius: 5px;
+    transition: background 0.2s, color 0.2s;
+
+     
+}  
